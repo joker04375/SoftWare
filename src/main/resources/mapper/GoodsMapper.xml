@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.ruangong.dao.GoodsDao">
+    <insert id="addGoods">
+
+    </insert>
+
+    <update id="updateOnSale">
+
+    </update>
+
+    <delete id="deleteGoods">
+
+    </delete>
+
+
+    <select id="selectGoods" resultType="com.example.ruangong.pojo.Goods">
+
+    </select>
+</mapper>
