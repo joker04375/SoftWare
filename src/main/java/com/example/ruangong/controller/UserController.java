@@ -4,21 +4,28 @@ import com.example.ruangong.pojo.Goods;
 import com.example.ruangong.pojo.Result;
 import com.example.ruangong.pojo.User;
 import com.example.ruangong.service.UserService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+@RestController
 public class UserController {
     @Resource
     private UserService userService;
 
     //用户注册
     @PostMapping("register")
-    public Result register(String username, String password) {
+    public Result register(String username, String password,String name,String email) {
+        int i = userService.register(username, password,name,email);
+        if (i==0){
+            return Result.error(0,"更新失败");
+        }
         return Result.ok();
     }
 
@@ -38,7 +45,31 @@ public class UserController {
         return Result.ok();
     }
 
-    //管理商品
+
+    //添加用户
+    @PostMapping("/inserUser")
+    public Result insertUser(User user){
+        int i = userService.insertUser(user);
+        if (i==0){
+
+        }
+        return Result.ok();
+    }
+
+    //修改用户信息
+    @PostMapping("/updateUser")
+    public Result updateUser(User user){
+        int i = userService.updateUser(user);
+        return Result.ok();
+    }
+
+    //删除用户
+    @GetMapping("/delUser/{id}")
+    public Result insertUser(@PathVariable("id")Long userId){
+        return Result.ok();
+    }
+
+   /* //管理商品
     @PostMapping("/updateUserAndGoods/{goodsId}")
     public Result updateUserAndGoods(@PathVariable("id")Long goodsId){
         return Result.ok();
@@ -66,23 +97,5 @@ public class UserController {
     @PostMapping("/updateAuthor/{id}")
     public Result updateUserAuthor(@PathVariable("id")Long userId){
         return Result.ok();
-    }
-
-    //添加用户
-    @PostMapping("/inserUser")
-    public Result insertUser(User user){
-        return Result.ok();
-    }
-
-    //修改用户信息
-    @PostMapping("/updateUser")
-    public Result updateUser(User user){
-        return Result.ok();
-    }
-
-    //删除用户
-    @GetMapping("/delUser/{id}")
-    public Result insertUser(@PathVariable("id")Long userId){
-        return Result.ok();
-    }
+    }*/
 }
