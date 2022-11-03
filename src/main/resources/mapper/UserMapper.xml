@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.ruangong.dao.UserDao">
-    <insert id="insertUser">
+    <insert id="register">
+        insert
+        into user(username,nickname,password,email,type)
+        values(#{username},#{name},#{password},#{email},0)
+    </insert>
 
+    <insert id="insertUser">
+        insert
+        into user(username,nickname,password,email,type)
+        values(#{user.username},#{user.name},#{user.password},#{user.email},#{user.type})
     </insert>
 
     <update id="updateUser">
@@ -18,7 +26,9 @@
     </delete>
 
     <select id="login" resultType="com.example.ruangong.pojo.User">
-        select * from user where username=#{username} and password=#{password}
+        select *
+        from user
+        where username=#{username} and password=#{password}
     </select>
 
     <select id="checkUserAndGoods" resultType="java.lang.Integer">

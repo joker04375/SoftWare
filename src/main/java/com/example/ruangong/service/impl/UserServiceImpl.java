@@ -3,6 +3,7 @@ package com.example.ruangong.service.impl;
 import com.example.ruangong.dao.UserDao;
 import com.example.ruangong.pojo.User;
 import com.example.ruangong.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Re
+    @Autowired
     private UserDao userDao;
 
     @Override
@@ -32,8 +33,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int insertUser(String username, String password) {
-        return 0;
+    public int insertUser(User user) {
+        int i = userDao.insertUser(user);
+        return i;
+    }
+
+    @Override
+    public int register(String username, String password, String name, String email) {
+        int user = userDao.register(username, password ,name, email);
+        return user;
     }
 
     @Override

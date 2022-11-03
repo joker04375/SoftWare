@@ -17,7 +17,9 @@ public interface UserService {
     void logout(String token);
 
     //插入用户
-    int insertUser(String username, String password);
+    int insertUser(User user);
+
+    int register(String username, String password,String name,String email);
 
     //删除用户
     int deleteUser(Long id);

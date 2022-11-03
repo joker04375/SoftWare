@@ -11,7 +11,7 @@ import java.io.File;
 import java.util.List;
 @Service
 public class GoodsServiceImpl implements GoodsService {
-    @Resource
+    @Autowired
     private GoodsDao goodsDao;
 
     @Override

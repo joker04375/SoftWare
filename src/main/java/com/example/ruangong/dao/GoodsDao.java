@@ -1,10 +1,13 @@
 package com.example.ruangong.dao;
 
 import com.example.ruangong.pojo.Goods;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Mapper
+@Repository
 public interface GoodsDao {
     List<Goods> selectGoods(@Param("id") Long id);
 
