@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.ruangong.dao.GoodsDao">
     <sql id="selectFields">
-        id, name, price, num, onSale, img, ownSpec
+        id, name, price, num, onSale, img, ownSpec, deleted
     </sql>
 
     <sql id="insertFields">

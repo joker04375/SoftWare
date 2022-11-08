@@ -26,12 +26,12 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public int addGoods(@Param("goods") Goods goods) {
+    public int addGoods(Goods goods) {
         return goodsDao.addGoods(goods);
     }
 
     @Override
-    public int updateOnSale(@Param("id") Long id,@Param("status") Integer status) {
+    public int updateOnSale(Long id,Integer status) {
         return goodsDao.updateOnSale(id,status);
     }
 

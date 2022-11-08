@@ -6,10 +6,7 @@ import com.example.ruangong.pojo.User;
 import com.example.ruangong.service.GoodsService;
 import com.example.ruangong.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -75,7 +72,7 @@ public class UserController {
 
     //商品添加
     @PostMapping("/addGoods")
-    public Result addGoods(Goods goods){
+    public Result addGoods(@RequestBody Goods goods){
         int i = goodsService.addGoods(goods);
         if(i==0){
             return Result.error("添加失败");
@@ -90,8 +87,8 @@ public class UserController {
 //    }
 
     //商品删除
-    @GetMapping("/delGoods/{id}")
-    public Result delGoods(@PathVariable("id") Long goodsId){
+    @PostMapping("/delGoods")
+    public Result delGoods(Long goodsId){
         int i = goodsService.deleteGoods(goodsId);
         if(i==0){
             return Result.error("删除失败");

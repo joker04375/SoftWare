@@ -26,11 +26,18 @@ public class GoodsTest {
         System.out.println("插入成功");
     }
 
-
     @Test
     void selectGoods() {
         List<Goods> goods = goodsDao.selectGoods(null);
         System.out.println(goods);
     }
 
+    @Test
+    void delGoods() {
+        int i = goodsDao.deleteGoods(1L);
+        if(i==0){
+            System.out.println("删除失败");
+        }
+        System.out.println("删除成功");
+    }
 }
