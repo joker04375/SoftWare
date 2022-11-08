@@ -5,14 +5,16 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface UserDao {
-    User selectById(Long id);
+    List<User> selectById(Long id);
 
     User login(@Param("username") String username,@Param("password") String password);
 
-    int register(@Param("username") String username, @Param("password") String password,@Param("name")String name,@Param("email")String email);
+    int register(@Param("username") String username, @Param("password") String password,@Param("nickname")String name,@Param("email")String email);
 
     int insertUser(User user);
 
@@ -20,7 +22,7 @@ public interface UserDao {
 
     int updateUser(User user);
 
-    int updateUserAuthorization(Long id,int type);
+    int updateUserAuthorization(@Param("id") Long id,@Param("type") int type);
 
     int checkUserAndGoods(Long userId,Long goodsId);
 }
