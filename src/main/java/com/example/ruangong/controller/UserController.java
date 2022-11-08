@@ -3,6 +3,7 @@ package com.example.ruangong.controller;
 import com.example.ruangong.pojo.Goods;
 import com.example.ruangong.pojo.Result;
 import com.example.ruangong.pojo.User;
+import com.example.ruangong.service.GoodsService;
 import com.example.ruangong.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,9 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     @Resource
     private UserService userService;
+
+    @Resource
+    private GoodsService goodsService;
 
     //用户注册
     @PostMapping("register")
@@ -69,27 +73,35 @@ public class UserController {
         return Result.ok();
     }
 
-   /* //管理商品
-    @PostMapping("/updateUserAndGoods/{goodsId}")
-    public Result updateUserAndGoods(@PathVariable("id")Long goodsId){
-        return Result.ok();
-    }
-
     //商品添加
     @PostMapping("/addGoods")
     public Result addGoods(Goods goods){
-        return Result.ok();
+        int i = goodsService.addGoods(goods);
+        if(i==0){
+            return Result.error("添加失败");
+        }
+        return Result.ok("添加成功");
     }
 
-    //商品批量添加
-    @PostMapping("/addGoods")
-    public Result addGoods(MultipartFile multipartFile){
-        return Result.ok();
-    }
+//    //商品批量添加
+//    @PostMapping("/addGoods")
+//    public Result addGoods(MultipartFile multipartFile){
+//        return Result.ok();
+//    }
 
     //商品删除
     @GetMapping("/delGoods/{id}")
     public Result delGoods(@PathVariable("id") Long goodsId){
+        int i = goodsService.deleteGoods(goodsId);
+        if(i==0){
+            return Result.error("删除失败");
+        }
+        return Result.ok("删除成功");
+    }
+
+   /* //管理商品
+    @PostMapping("/updateUserAndGoods/{goodsId}")
+    public Result updateUserAndGoods(@PathVariable("id")Long goodsId){
         return Result.ok();
     }
 

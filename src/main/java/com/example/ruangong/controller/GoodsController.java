@@ -32,6 +32,8 @@ public class GoodsController {
     //展示某个商品
     @GetMapping("/showGoods/{id}")
     public Result GoodsInfo(@PathVariable("id") Long id){
-        return Result.ok();
+        List<Goods> goods = goodsService.selectGoods(id);
+        return Result.ok(goods);
     }
+
 }

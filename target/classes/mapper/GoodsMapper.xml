@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.ruangong.dao.GoodsDao">
-    <insert id="addGoods">
+    <sql id="selectFields">
+        id, name, price, num, onSale, img, ownSpec
+    </sql>
 
+    <sql id="insertFields">
+        name, price, num, onSale, img, ownSpec
+    </sql>
+
+    <insert id="addGoods" parameterType="com.example.ruangong.pojo.Goods">
+        insert into goods (<include refid="insertFields"></include>)
+        values (#{name},#{price},#{num},#{onSale},#{img},#{ownSpec})
     </insert>
 
     <update id="updateOnSale">
 
     </update>
 
-    <delete id="deleteGoods">
 
+    <delete id="deleteGoods">
+        delete from goods
+        where id = #{id}
     </delete>
 
 
     <select id="selectGoods" resultType="com.example.ruangong.pojo.Goods">
-
+        select <include refid="selectFields"></include>
+        from goods
+        where deleted = 0
+        <if test="id!=null">
+            and id=#{id}
+        </if>
     </select>
 </mapper>

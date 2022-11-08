@@ -15,5 +15,5 @@ public interface GoodsDao {
 
     int addGoods(Goods goods);
 
-    int updateOnSale(Integer status);
+    int updateOnSale(@Param("id")Long id,@Param("status")Integer status);
 }
