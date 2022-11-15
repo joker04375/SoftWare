@@ -9,20 +9,25 @@
 
     <insert id="insertUser">
         insert
-        into user(username,nickname,password,email,type)
-        values(#{user.username},#{user.name},#{user.password},#{user.email},#{user.type})
+        into user(username,nickname,password,email,type,deleted)
+        values(#{username},#{nickname},#{password},#{email},#{type},0)
     </insert>
 
     <update id="updateUser">
-
+        UPDATE user SET username=#{username},nickname=#{nickname},password=#{password},email=#{email},type=#{type}
+        where id=#{id}
     </update>
 
     <update id="updateUserAuthorization">
-
+        update user
+        set user.type=#{type}
+        where user.id=#{type}
     </update>
 
     <delete id="deleteUser">
-
+        update user
+        set deleted=0
+        where id=#{id}
     </delete>
 
     <select id="login" resultType="com.example.ruangong.pojo.User">
@@ -35,6 +40,11 @@
 
     </select>
     <select id="selectById" resultType="com.example.ruangong.pojo.User">
-
+        select *
+        from user
+        where deleted = 0
+        <if test="id!=null">
+            id=#{id}
+        </if>
     </select>
 </mapper>

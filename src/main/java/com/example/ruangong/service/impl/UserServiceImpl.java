@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectById(Long id) {
-        return null;
+    public List<User> selectById(Long id) {
+        return userDao.selectById(id);
     }
 
     @Override
@@ -46,17 +46,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int deleteUser(Long id) {
-        return 0;
+        return userDao.deleteUser(id);
     }
 
     @Override
     public int updateUser(User user) {
-        return 0;
+        return userDao.updateUser(user);
     }
 
     @Override
     public int updateUserAuthorization(Long id, int status) {
-        return 0;
+        int i = userDao.updateUserAuthorization(id, status);
+        return i;
     }
 
     @Override
@@ -66,8 +67,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(Long userId) {
-        User user = this.selectById(userId);
-
+        List<User> userList = this.selectById(userId);
+        User user = userList.get(0);
         List<GrantedAuthority> list = new ArrayList<>();
         list.add(new GrantedAuthority() {
             @Override

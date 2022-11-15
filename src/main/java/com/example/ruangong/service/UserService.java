@@ -4,6 +4,7 @@ import com.example.ruangong.pojo.User;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
+import java.util.List;
 
 
 public interface UserService {
@@ -11,7 +12,7 @@ public interface UserService {
     User login(String username, String password);
 
     //根据id查询用户
-    User selectById(Long id);
+    List<User> selectById(Long id);
 
     //登出
     void logout(String token);

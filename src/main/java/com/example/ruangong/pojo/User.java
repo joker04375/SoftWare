@@ -8,7 +8,7 @@ public class User {
     //用户名
     private String username;
     //昵称
-    private String nickName;
+    private String nickname;
     //密码
     private String password;
     //邮箱
