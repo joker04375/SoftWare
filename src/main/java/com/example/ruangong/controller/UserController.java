@@ -95,51 +95,51 @@ public class UserController {
         }
         return Result.ok();
     }
-   /* //管理商品
-    @PostMapping("/updateUserAndGoods/{goodsId}")
-    public Result updateUserAndGoods(@PathVariable("id")Long goodsId){
-        return Result.ok();
-    }
-
-    //商品添加
-    @PostMapping("/addGoods")
-    public Result addGoods(Goods goods){
-        return Result.ok();
-    }
-
-    //商品批量添加
-    @PostMapping("/addGoods")
-    public Result addGoods(MultipartFile multipartFile){
-        return Result.ok();
-    }
-
-    //商品删除
-    @GetMapping("/delGoods/{id}")
-    public Result delGoods(@PathVariable("id") Long goodsId){
-        return Result.ok();
-    }
-
-    //修改用户权限
-    @PostMapping("/updateAuthor/{id}")
-    public Result updateUserAuthor(@PathVariable("id")Long userId){
-        return Result.ok();
-    }
-
-    //添加用户
-    @PostMapping("/inserUser")
-    public Result insertUser(User user){
-        return Result.ok();
-    }
-
-    //修改用户信息
-    @PostMapping("/updateUser")
-    public Result updateUser(User user){
-        return Result.ok();
-    }
-
-    //删除用户
-    @GetMapping("/delUser/{id}")
-    public Result insertUser(@PathVariable("id")Long userId){
-        return Result.ok();
-    }
+//    //管理商品
+//    @PostMapping("/updateUserAndGoods/{goodsId}")
+//    public Result updateUserAndGoods(@PathVariable("id")Long goodsId){
+//        return Result.ok();
+//    }
+//
+//    //商品添加
+//    @PostMapping("/addGoods")
+//    public Result addGoods(Goods goods){
+//        return Result.ok();
+//    }
+//
+//    //商品批量添加
+//    @PostMapping("/addGoods")
+//    public Result addGoods(MultipartFile multipartFile){
+//        return Result.ok();
+//    }
+//
+//    //商品删除
+//    @GetMapping("/delGoods/{id}")
+//    public Result delGoods(@PathVariable("id") Long goodsId){
+//        return Result.ok();
+//    }
+//
+//    //修改用户权限
+//    @PostMapping("/updateAuthor/{id}")
+//    public Result updateUserAuthor(@PathVariable("id")Long userId){
+//        return Result.ok();
+//    }
+//
+//    //添加用户
+//    @PostMapping("/inserUser")
+//    public Result insertUser(User user){
+//        return Result.ok();
+//    }
+//
+//    //修改用户信息
+//    @PostMapping("/updateUser")
+//    public Result updateUser(User user){
+//        return Result.ok();
+//    }
+//
+//    //删除用户
+//    @GetMapping("/delUser/{id}")
+//    public Result insertUser(@PathVariable("id")Long userId){
+//        return Result.ok();
+//    }
 }

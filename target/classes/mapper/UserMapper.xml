@@ -1,30 +1,50 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.ruangong.dao.UserDao">
-    <insert id="insertUser">
+    <insert id="register">
+        insert
+        into user(username,nickname,password,email,type)
+        values(#{username},#{name},#{password},#{email},0)
+    </insert>
 
+    <insert id="insertUser">
+        insert
+        into user(username,nickname,password,email,type,deleted)
+        values(#{username},#{nickname},#{password},#{email},#{type},0)
     </insert>
 
     <update id="updateUser">
-
+        UPDATE user SET username=#{username},nickname=#{nickname},password=#{password},email=#{email},type=#{type}
+        where id=#{id}
     </update>
 
     <update id="updateUserAuthorization">
-
+        update user
+        set user.type=#{type}
+        where user.id=#{type}
     </update>
 
     <delete id="deleteUser">
-
+        update user
+        set deleted=0
+        where id=#{id}
     </delete>
 
     <select id="login" resultType="com.example.ruangong.pojo.User">
-        select * from user where username=#{username} and password=#{password}
+        select *
+        from user
+        where username=#{username} and password=#{password}
     </select>
 
     <select id="checkUserAndGoods" resultType="java.lang.Integer">
 
     </select>
     <select id="selectById" resultType="com.example.ruangong.pojo.User">
-
+        select *
+        from user
+        where deleted = 0
+        <if test="id!=null">
+            id=#{id}
+        </if>
     </select>
 </mapper>
