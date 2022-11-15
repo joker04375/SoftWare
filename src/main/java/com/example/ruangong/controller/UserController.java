@@ -3,10 +3,9 @@ package com.example.ruangong.controller;
 import com.example.ruangong.pojo.Goods;
 import com.example.ruangong.pojo.Result;
 import com.example.ruangong.pojo.User;
+import com.example.ruangong.service.GoodsService;
 import com.example.ruangong.service.UserService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
