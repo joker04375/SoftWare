@@ -1,8 +1,8 @@
 package com.example.ruangong.service;
 
-        import com.example.ruangong.pojo.Cart;
+import com.example.ruangong.pojo.Cart;
 
-        import java.util.List;
+import java.util.List;
 
 public interface CartService {
     //添加订单
@@ -12,7 +12,7 @@ public interface CartService {
     int deleteCarts(List<Long> ids);
 
     //查询订单
-    Cart selectCart(Long id);
+    List<Cart> selectCart(Long id);
 
     //购买
     int buyCart(Long id);

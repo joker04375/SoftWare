@@ -14,7 +14,7 @@ public interface CartDao {
 
     int deleteCarts(List<Long> ids);
 
-    Cart selectCart(Long id);
+    List<Cart> selectCart(Long id);
 
     int buyCart(Long id);
 }

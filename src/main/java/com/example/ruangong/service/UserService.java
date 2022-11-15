@@ -3,6 +3,7 @@ package com.example.ruangong.service;
 import com.example.ruangong.pojo.User;
 import org.springframework.security.core.GrantedAuthority;
 
+import javax.servlet.http.HttpSession;
 import java.util.Collection;
 import java.util.List;
 

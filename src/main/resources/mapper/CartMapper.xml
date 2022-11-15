@@ -2,10 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.ruangong.dao.CartDao">
 
-    <insert id="addCart"></insert>
-    <update id="buyCart"></update>
-    <delete id="deleteCarts"></delete>
-    <select id="selectCart" resultType="com.example.ruangong.pojo.Cart">
+    <sql id="selectFields">
+        id,userId,goodsId,price, num,ownSpec, title,image,isPayment;
+    </sql>
 
+    <sql id="insertFields">
+        userId,goodsId,price, num,ownSpec,title,image,isPayment,deleted;
+    </sql>
+
+    <insert id="addCart">
+        insert into cart (<include refid="insertFields"></include>)
+        values (#{userId},#{goodsId},#{price},#{num},#{ownSpec},#{title},#{image},#{isPayment},#{deleted},0)
+    </insert>
+
+    <update id="buyCart">
+
+    </update>
+
+    <delete id="deleteCarts">
+        delete from cart
+        where id = #{id}
+    </delete>
+    <select id="selectCart" resultType="com.example.ruangong.pojo.Cart">
+        select <include refid="selectFields"></include>
+        from Cart
+        where deleted = 0
+        <if test="id!=null">
+            and id=#{id}
+        </if>
     </select>
 </mapper>

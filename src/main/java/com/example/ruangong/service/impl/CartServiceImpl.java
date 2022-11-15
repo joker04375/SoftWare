@@ -15,21 +15,21 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public int addCart(Cart cart) {
-        return 0;
+        return cartDao.addCart(cart);
     }
 
     @Override
     public int deleteCarts(List<Long> ids) {
-        return 0;
+        return cartDao.deleteCarts(ids);
     }
 
     @Override
-    public Cart selectCart(Long id) {
-        return null;
+    public List<Cart> selectCart(Long id) {
+        return cartDao.selectCart(id);
     }
 
     @Override
     public int buyCart(Long id) {
-        return 0;
+        return cartDao.buyCart(id);
     }
 }
