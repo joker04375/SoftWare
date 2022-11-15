@@ -19,5 +19,6 @@ public class Goods {
     private String ownSpec;
     //图片
     private String img;
+
     private Integer deleted;
 }

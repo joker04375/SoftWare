@@ -3,6 +3,7 @@ package com.example.ruangong.service.impl;
 import com.example.ruangong.dao.GoodsDao;
 import com.example.ruangong.pojo.Goods;
 import com.example.ruangong.service.GoodsService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,22 +17,22 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public List<Goods> selectGoods(Long id) {
-        return null;
+        return goodsDao.selectGoods(id);
     }
 
     @Override
     public int deleteGoods(Long id) {
-        return 0;
+        return goodsDao.deleteGoods(id);
     }
 
     @Override
     public int addGoods(Goods goods) {
-        return 0;
+        return goodsDao.addGoods(goods);
     }
 
     @Override
-    public int updateOnSale(Integer status) {
-        return 0;
+    public int updateOnSale(Long id,Integer status) {
+        return goodsDao.updateOnSale(id,status);
     }
 
     public void addGoods(File file){

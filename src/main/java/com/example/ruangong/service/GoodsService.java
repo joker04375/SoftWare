@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface GoodsService {
     //查询商品
-    List<Goods> selectGoods(@Param("id") Long id);
+    List<Goods> selectGoods(Long id);
 
     //删除商品
-    int deleteGoods(@Param("id") Long id);
+    int deleteGoods(Long id);
 
     //添加商品
     int addGoods(Goods goods);
 
     //更新是否展示
-    int updateOnSale(Integer status);
+    int updateOnSale(Long id,Integer status);
 }
