@@ -1,5 +1,6 @@
 package com.example.ruangong.controller;
 
+import com.example.ruangong.Utils.UserHolder;
 import com.example.ruangong.pojo.Goods;
 import com.example.ruangong.pojo.Result;
 import com.example.ruangong.pojo.User;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -20,51 +22,83 @@ public class UserController {
 
     //用户注册
     @PostMapping("register")
-    public Result register(String username, String password,String name,String email) {
+    public Result register(@RequestParam String username, @RequestParam String password,String name,String email) {
         int i = userService.register(username, password,name,email);
         if (i==0){
-            return Result.error(0,"更新失败");
+            return Result.error("更新失败");
         }
-        return Result.ok();
+        return Result.ok("更新成功");
     }
 
     //用户登录
-    @GetMapping("login")
-    public Result login(String username, String password, HttpSession session) {
+    @PostMapping("login")
+    public Result login(@RequestParam String username,@RequestParam String password, HttpSession session) {
         User user = userService.login(username, password);
         if(user==null){
             return Result.error(100,"登录失败");
         }
+        session.setAttribute("user",user);
         return Result.ok("登陆成功");
     }
 
     //用户登出
     @GetMapping("logout")
-    public Result logout(String token) {
-        return Result.ok();
+    public Result logout(String token,HttpSession session) {
+        session.removeAttribute("user");
+        return Result.ok("登出成功");
     }
 
 
-    //添加用户
-    @PostMapping("/inserUser")
-    public Result insertUser(User user){
+    //查询所有用户
+    @GetMapping("/selectUser")
+    public Result selectAllUser(){
+        List<User> user = userService.selectById(null);
+        return Result.ok(user);
+    }
+
+    //查询单个用户
+    @GetMapping("/selectUser/id")
+    public Result selectOneUser(@PathVariable("id") Long id){
+        List<User> user = userService.selectById(id);
+        return Result.ok(user);
+    }
+
+    //添加用户 4
+    @PostMapping("/insertUser")
+    public Result insertUser(@RequestBody User user){
         int i = userService.insertUser(user);
         if (i==0){
-
+            return Result.error("插入失败");
         }
-        return Result.ok();
+        return Result.ok("插入成功");
     }
 
     //修改用户信息
     @PostMapping("/updateUser")
-    public Result updateUser(User user){
+    public Result updateUser(@RequestBody User user){
         int i = userService.updateUser(user);
-        return Result.ok();
+        if (i==0){
+            return Result.error("更新失败");
+        }
+        return Result.ok("更新成功");
     }
 
     //删除用户
     @GetMapping("/delUser/{id}")
-    public Result insertUser(@PathVariable("id")Long userId){
+    public Result insertUser(@PathVariable("id")Long id){
+        int i = userService.deleteUser(id);
+        if (i==0){
+            return Result.error("删除失败");
+        }
+        return Result.ok();
+    }
+    //修改用户权限
+    @PostMapping("/updateAuthor/{id}")
+    public Result updateUserAuthor(@PathVariable("id")Long userId,int type){
+        int i = userService.updateUserAuthorization(userId, type);
+        if (i==0){
+            return Result.error("修改失败");
+        }
         return Result.ok();
     }
 
