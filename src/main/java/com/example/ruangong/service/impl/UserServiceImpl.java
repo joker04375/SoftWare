@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int register(String username, String password, String name, String email) {
-        int user = userDao.register(username, password ,name, email);
+    public int register(String username, String password, String nickname, String email) {
+        int user = userDao.register(username, password ,nickname, email);
         return user;
     }
 

@@ -3,6 +3,7 @@ package com.example.ruangong;
 import com.example.ruangong.dao.GoodsDao;
 import com.example.ruangong.pojo.Goods;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.util.List;

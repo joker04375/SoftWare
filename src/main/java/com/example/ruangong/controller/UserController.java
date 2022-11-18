@@ -38,8 +38,20 @@ public class UserController {
             return Result.error(100,"登录失败");
         }
         session.setAttribute("user",user);
-        return Result.ok("登陆成功");
+        return Result.ok(user);
     }
+
+//    //用户登录
+//    @PostMapping("login")
+//    public User login(@RequestParam String username,@RequestParam String password, HttpSession session) {
+//        User user = userService.login(username, password);
+//        if(user==null){
+////            return Result.error(100,"登录失败");
+//        }
+//        session.setAttribute("user",user);
+////        return Result.ok(user);
+//        return user;
+//    }
 
     //用户登出
     @GetMapping("logout")
