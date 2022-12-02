@@ -53,12 +53,11 @@ public class GoodsController {
     }
 
     @PostMapping("/upload/{id}")
-    public String uploadHeader(@PathVariable("id") Long id,MultipartFile ImageFile, Model model){
+    public Result uploadHeader(@PathVariable("id") Long id,MultipartFile ImageFile){
         String filename = ImageFile.getOriginalFilename();
         String suffix = filename.substring(filename.lastIndexOf("."));
         if(StringUtils.isBlank(suffix)){
-            model.addAttribute("error","文件格式不正确");
-            return "/site/setting";
+            return Result.error("文件格式错误");
         }
 
         // 生成随机文件名
@@ -79,7 +78,7 @@ public class GoodsController {
         String headerUrl = domain +  "/image/" + filename;
         goodsService.updateImage(id,headerUrl);
 
-        return "redirect:/index";
+        return Result.ok("上传成功");
     }
 
     @GetMapping("/image/{fileName}")
