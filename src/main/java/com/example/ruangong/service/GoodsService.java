@@ -17,4 +17,6 @@ public interface GoodsService {
 
     //更新是否展示
     int updateOnSale(Long id,Integer status);
+
+    int updateImage(Long id,String image);
 }

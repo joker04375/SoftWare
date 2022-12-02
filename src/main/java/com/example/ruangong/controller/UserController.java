@@ -1,6 +1,6 @@
 package com.example.ruangong.controller;
 
-import com.example.ruangong.Utils.UserHolder;
+
 import com.example.ruangong.pojo.Goods;
 import com.example.ruangong.pojo.Result;
 import com.example.ruangong.pojo.User;
@@ -22,7 +22,7 @@ public class UserController {
 
     //用户注册
     @PostMapping("register")
-    public Result register(@RequestParam String username, @RequestParam String password,String name,String email) {
+    public Result register(@RequestParam String username, @RequestParam String password,@RequestParam String name,@RequestParam String email) {
         int i = userService.register(username, password,name,email);
         if (i==0){
             return Result.error("更新失败");
@@ -40,6 +40,15 @@ public class UserController {
         session.setAttribute("user",user);
         return Result.ok(user);
     }
+    //用户登出
+    @PostMapping("logout")
+    public Result logout(String token,HttpSession session) {
+        Object user = session.getAttribute("user");
+        user = (User) user;
+        System.out.println(user);
+        session.removeAttribute("user");
+        return Result.ok("登出成功");
+    }
 
 //    //用户登录
 //    @PostMapping("login")
@@ -53,12 +62,7 @@ public class UserController {
 //        return user;
 //    }
 
-    //用户登出
-    @GetMapping("logout")
-    public Result logout(String token,HttpSession session) {
-        session.removeAttribute("user");
-        return Result.ok("登出成功");
-    }
+
 
 
     //查询所有用户
@@ -104,15 +108,17 @@ public class UserController {
         }
         return Result.ok();
     }
-    //修改用户权限
-    @PostMapping("/updateAuthor/{id}")
-    public Result updateUserAuthor(@PathVariable("id")Long userId,int type){
-        int i = userService.updateUserAuthorization(userId, type);
-        if (i==0){
-            return Result.error("修改失败");
-        }
-        return Result.ok();
-    }
+
+//    //修改用户权限
+//    @PostMapping("/updateAuthor/{id}")
+//    public Result updateUserAuthor(@PathVariable("id")Long userId,int type){
+//        int i = userService.updateUserAuthorization(userId, type);
+//        if (i==0){
+//            return Result.error("修改失败");
+//        }
+//        return Result.ok();
+//    }
+
 
     //商品添加
     @PostMapping("/addGoods")
@@ -131,8 +137,8 @@ public class UserController {
 //    }
 
     //商品删除
-    @PostMapping("/delGoods")
-    public Result delGoods(Long goodsId){
+    @PostMapping("/delGoods/{id}")
+    public Result delGoods(@PathVariable("id") Long goodsId){
         int i = goodsService.deleteGoods(goodsId);
         if(i==0){
             return Result.error("删除失败");
@@ -140,15 +146,15 @@ public class UserController {
         return Result.ok("删除成功");
     }
 
-   /* //管理商品
-    @PostMapping("/updateUserAndGoods/{goodsId}")
-    public Result updateUserAndGoods(@PathVariable("id")Long goodsId){
-        return Result.ok();
-    }
-
-    //修改用户权限
-    @PostMapping("/updateAuthor/{id}")
-    public Result updateUserAuthor(@PathVariable("id")Long userId){
-        return Result.ok();
-    }*/
+//    //管理商品
+//    @PostMapping("/updateUserAndGoods/{goodsId}")
+//    public Result updateUserAndGoods(@PathVariable("id")Long goodsId){
+//        return Result.ok();
+//    }
+//
+//    //修改用户权限
+//    @PostMapping("/updateAuthor/{id}")
+//    public Result updateUserAuthor(@PathVariable("id")Long userId){
+//        return Result.ok();
+//    }
 }

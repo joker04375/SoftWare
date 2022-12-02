@@ -16,4 +16,6 @@ public interface GoodsDao {
     int addGoods(Goods goods);
 
     int updateOnSale(@Param("id")Long id,@Param("status")Integer status);
+
+    int updateImage(@Param("id") Long id, @Param("img") String img);
 }

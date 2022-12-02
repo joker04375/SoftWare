@@ -20,6 +20,11 @@
         where id=#{id}
     </update>
 
+    <update id="updateImage">
+        update goods set image = #{image}
+        where id = #{id}
+    </update>
+
 
     <delete id="deleteGoods">
         delete from goods

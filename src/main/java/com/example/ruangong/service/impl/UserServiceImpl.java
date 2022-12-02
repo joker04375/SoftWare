@@ -24,6 +24,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int register(String username, String password, String nickname, String email) {
+        int user = userDao.register(username, password ,nickname, email);
+        return user;
+    }
+
+    @Override
     public List<User> selectById(Long id) {
         return userDao.selectById(id);
     }
@@ -39,11 +45,6 @@ public class UserServiceImpl implements UserService {
         return i;
     }
 
-    @Override
-    public int register(String username, String password, String nickname, String email) {
-        int user = userDao.register(username, password ,nickname, email);
-        return user;
-    }
 
     @Override
     public int deleteUser(Long id) {

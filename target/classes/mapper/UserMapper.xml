@@ -3,8 +3,8 @@
 <mapper namespace="com.example.ruangong.dao.UserDao">
     <insert id="register">
         insert
-        into user(username,nickname,password,email,type)
-        values(#{username},#{name},#{password},#{email},0)
+        into user(username,password,nickname,email,type,deleted)
+        values(#{username},#{password},#{nickname},#{email},0,0)
     </insert>
 
     <insert id="insertUser">
@@ -26,7 +26,7 @@
 
     <delete id="deleteUser">
         update user
-        set deleted=0
+        set deleted=1
         where id=#{id}
     </delete>
 

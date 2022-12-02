@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.annotation.Resource;
 import java.util.List;
 
+@SpringBootTest
 public class GoodsTest {
     @Resource
     private GoodsDao goodsDao;
@@ -32,6 +33,14 @@ public class GoodsTest {
         List<Goods> goods = goodsDao.selectGoods(null);
         System.out.println(goods);
     }
+
+
+    @Test
+    void selectOneGood() {
+        List<Goods> goods = goodsDao.selectGoods(1L);
+        System.out.println(goods);
+    }
+
 
     @Test
     void delGoods() {
