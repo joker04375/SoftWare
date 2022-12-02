@@ -21,7 +21,7 @@
     </update>
 
     <update id="updateImage">
-        update goods set image = #{image}
+        update goods set img = #{image}
         where id = #{id}
     </update>
 

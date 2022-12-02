@@ -53,7 +53,11 @@ public class GoodsController {
     }
 
     @PostMapping("/upload/{id}")
-    public Result uploadHeader(@PathVariable("id") Long id,MultipartFile ImageFile){
+    public Result uploadFile(MultipartFile ImageFile,@PathVariable("id") Long id){
+        if(ImageFile == null){
+            return Result.error("您没有选择文件");
+        }
+
         String filename = ImageFile.getOriginalFilename();
         String suffix = filename.substring(filename.lastIndexOf("."));
         if(StringUtils.isBlank(suffix)){
@@ -72,11 +76,8 @@ public class GoodsController {
             throw new RuntimeException("上传文件失败，服务器发生异常");
         }
 
-        // 更新当前用户头像的路径(web访问路径)
-        // http://localhost:8080/community/user/header/xxx.png
-        User user = UserHolder.getUser();
-        String headerUrl = domain +  "/image/" + filename;
-        goodsService.updateImage(id,headerUrl);
+        String image = domain +  "/image/" + filename;
+        goodsService.updateImage(id,image);
 
         return Result.ok("上传成功");
     }
