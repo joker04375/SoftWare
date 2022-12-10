@@ -13,6 +13,7 @@ public class Goods {
     private Double price;
     // 库存
     private Integer num;
+
     // 是否展示商品
     private Integer onSale;
     //详情

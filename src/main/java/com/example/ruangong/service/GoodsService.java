@@ -19,4 +19,6 @@ public interface GoodsService {
     int updateOnSale(Long id,Integer status);
 
     int updateImage(Long id,String image);
+
+    int updateGoodsNum(Long id,Integer num);
 }

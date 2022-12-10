@@ -10,7 +10,7 @@ public class Cart {
 
     private Long userId;
 
-    private List<Long> goodsId;
+    private Long goodsId;
 
     private Double price;
     //数目
@@ -25,4 +25,6 @@ public class Cart {
     private Integer isPayment;
 
     private Integer deleted;
+
+    private Goods goods;
 }

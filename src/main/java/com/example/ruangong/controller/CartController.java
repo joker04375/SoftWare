@@ -1,14 +1,16 @@
 package com.example.ruangong.controller;
 
+import com.example.ruangong.Utils.UserHolder;
+import com.example.ruangong.pojo.Cart;
 import com.example.ruangong.pojo.Result;
+import com.example.ruangong.pojo.User;
 import com.example.ruangong.service.CartService;
 import com.example.ruangong.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
+
 //购物车、订单
 @RestController
 public class CartController {
@@ -18,23 +20,45 @@ public class CartController {
     @Resource
     private UserService userService;
 
+    //添加到购物车
+    @PostMapping("/addToCart")
+    public Result addCart(@RequestParam Long goodId,@RequestParam Integer num){
+        //获取当前用户
+        User user = UserHolder.getUser();
+        int i = cartService.addCart(goodId,user.getId(),num);
+        if(i==0){
+            return Result.error("添加失败");
+        }
+        return Result.ok("添加成功");
+    }
+
+    //展示订单
     @GetMapping("/showCart")
     public Result showCart(){
-        return Result.ok();
+        //获取当前用户
+        User user = UserHolder.getUser();
+        List<Cart> carts = cartService.selectCart(user.getId());
+        if(carts==null){
+            return Result.error("订单为空");
+        }
+        return Result.ok(carts);
     }
 
-    @GetMapping("/showCart/{id}")
-    public Result showCart(@PathVariable("id")Long id){
-        return Result.ok();
-    }
-
-    @GetMapping("/delCart/{id}")
-    public Result delCart(@PathVariable("id")Long id){
-        return Result.ok();
+    @PostMapping("/delCart")
+    public Result delCart(@RequestBody List<Long> ids){
+        int i = cartService.deleteCarts(ids);
+        if(i==0){
+            return Result.error("删除失败");
+        }
+        return Result.ok("删除成功");
     }
 
     @PostMapping("/buy/{id}")
     public Result buyCart(@PathVariable("id")Long id){
-        return Result.ok();
+        int i = cartService.buyCart(id);
+        if(i==0){
+            return Result.error("购买失败");
+        }
+        return Result.ok("支付成功");
     }
 }

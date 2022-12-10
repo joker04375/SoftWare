@@ -25,6 +25,11 @@
         where id = #{id}
     </update>
 
+    <update id="updateGoodsNum">
+        update goods set num = #{num}
+        where id = #{id}
+    </update>
+
 
     <delete id="deleteGoods">
         delete from goods

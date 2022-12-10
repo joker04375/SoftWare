@@ -5,14 +5,14 @@ package com.example.ruangong.service;
         import java.util.List;
 
 public interface CartService {
-    //添加订单
-    int addCart(Cart cart);
+    //添加商品到购物车
+    int addCart(Long goodId,Long userId,Integer num);
 
-    //删除订单
+    //删除商品
     int deleteCarts(List<Long> ids);
 
     //查询订单
-    Cart selectCart(Long id);
+    List<Cart> selectCart(Long userId);
 
     //购买
     int buyCart(Long id);

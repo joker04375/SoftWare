@@ -15,10 +15,6 @@ public class GoodsServxiceImpl implements GoodsService {
     @Autowired
     private GoodsDao goodsDao;
 
-    @Override
-    public List<Goods> selectGoods(Long id) {
-        return goodsDao.selectGoods(id);
-    }
 
     @Override
     public int deleteGoods(Long id) {
@@ -39,5 +35,16 @@ public class GoodsServxiceImpl implements GoodsService {
     public int updateImage(Long id, String image) {
         return goodsDao.updateImage(id,image);
     }
+
+    @Override
+    public int updateGoodsNum(Long id,Integer num) {
+        return goodsDao.updateGoodsNum(id,num);
+    }
+
+    @Override
+    public List<Goods> selectGoods(Long id) {
+        return goodsDao.selectGoods(id);
+    }
+
 
 }

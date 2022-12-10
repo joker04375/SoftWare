@@ -69,6 +69,7 @@ public class GoodsController {
 
         // 确定文件存放的路径
         File file = new File(upLoadPath + "/" + filename);
+
         try {
             // 存储文件
             ImageFile.transferTo(file);
@@ -79,7 +80,7 @@ public class GoodsController {
         String image = domain +  "/image/" + filename;
         goodsService.updateImage(id,image);
 
-        return Result.ok("上传成功");
+        return Result.ok(image);
     }
 
     @GetMapping("/image/{fileName}")

@@ -2,19 +2,22 @@ package com.example.ruangong.dao;
 
 import com.example.ruangong.pojo.Cart;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
 
 @Mapper
 @Repository
 public interface CartDao {
-    int addCart(Cart cart);
 
-    int deleteCarts(List<Long> ids);
+    int deleteCarts(@Param("idlist")List<Long> ids);
 
-    Cart selectCart(Long id);
+    List<Cart> selectCart(@Param("userId") Long userId);
 
-    int buyCart(Long id);
+    int buyCart(@Param("id") Long id);
+
+    int addCart(@Param("goodId") Long goodId,@Param("userId") Long userId,@Param("num") Integer num);
+
+    List<Cart> selectCartByOrderId(@Param("orderId") Long orderId);
 }
